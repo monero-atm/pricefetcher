@@ -19,10 +19,5 @@ func (c *Client) FetchXMRPrice(currency string) (float64, string, error) {
 		return price, "crytocompare", nil
 	}
 
-	price, err = c.FetchFromBinance()
-	if err == nil {
-		return price, "binance", nil
-	}
-
 	return 0, "", errors.New("failed to fetch XMR price from all sources")
 }
