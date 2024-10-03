@@ -1,6 +1,6 @@
 # Pricefetcher
 
-A simple library for fetching Monero rate for USD or EUR.
+A simple library for fetching Monero rate for USD or EUR. Supports fetching from CoinGecko, CryptoCompare, Binance and Kraken.
 
 ## Usage
 
@@ -30,6 +30,13 @@ func main() {
 		log.Println("Failed to fetch price from crytocompare:", err)
 	} else {
 		fmt.Printf("CryptoCompare EUR price = %f\n", price)
+	}
+
+	price, err = client.FetchFromKraken("EUR")
+	if err != nil {
+		log.Println("Failed to fetch price from kraken:", err)
+	} else {
+		fmt.Printf("Kraken EUR price = %f\n", price)
 	}
 
 	// Binance only supports USDT. To convert that to EUR I suggest getting EUR/USD rate from ECB.

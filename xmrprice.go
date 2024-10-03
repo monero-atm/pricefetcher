@@ -4,7 +4,12 @@ import "errors"
 
 // Returns price, name of the source ("binance", "coingecko" or "cryptocompare") and error if any
 func (c *Client) FetchXMRPrice(currency string) (float64, string, error) {
-	price, err := c.FetchFromCoinGecko(currency)
+	price, err := c.FetchFromKraken(currency)
+	if err == nil {
+		return price, "kraken", nil
+	}
+
+	price, err = c.FetchFromCoinGecko(currency)
 	if err == nil {
 		return price, "coingecko", nil
 	}

@@ -8,6 +8,7 @@ const (
 	coingecko     = "https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=%s"
 	cryptocompare = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=XMR&tsyms=%s"
 	binance       = "https://api.binance.com/api/v3/ticker/price?symbol=XMRUSDT"
+	kraken        = "https://api.kraken.com/0/public/Ticker?pair=XMR%s"
 )
 
 var options = []string{"coingecko", "cryptcompare", "binance"}
@@ -23,6 +24,5 @@ func New(httpClient *http.Client) *Client {
 	} else {
 		cl.httpcl = httpClient
 	}
-
 	return &cl
 }
